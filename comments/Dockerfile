@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Exposer le port 4000 (adapter pour chaque service)
-EXPOSE 4000
+EXPOSE 4001
 
 # Démarrer l'application
 CMD ["npm", "start"]

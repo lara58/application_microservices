@@ -26,7 +26,6 @@ L'application est composée des services suivants :
 - **Query** : Service pour la gestion des requêtes.
 - **Moderation** : Service pour la modération des commentaires.
 - **Event Bus** : Service pour la gestion des événements entre les services.
-
 ### Chemins d'Ingress
 
 - `/posts/create` : Dirigé vers le service `posts-clusterip-srv` sur le port 4000.

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: comments-deployment
+  name: comments-depl
 spec:
   replicas: 1
   selector:
@@ -13,13 +13,11 @@ spec:
         app: comments
     spec:
       containers:
-      - name: comments
-        image: lara58/comments:latest
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 4001
-      imagePullSecrets:
-      - name: regcred
+        - name: comments
+          image: comments:latest
+          ports:
+            - containerPort: 4001
+          imagePullPolicy: Never
 ---
 apiVersion: v1
 kind: Service
@@ -29,7 +27,8 @@ spec:
   selector:
     app: comments
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 4001
       targetPort: 4001
   type: ClusterIP

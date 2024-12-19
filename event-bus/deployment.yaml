@@ -15,7 +15,6 @@ spec:
       containers:
       - name: event-bus
         image: lara58/event-bus:latest
-        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 4005
       imagePullSecrets:

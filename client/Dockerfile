@@ -1,5 +1,5 @@
 # Utiliser une image de base pour Node.js
-FROM node:14-alpine
+FROM node:14-alpine AS build
 
 # Définir le répertoire de travail
 WORKDIR /app
@@ -16,8 +16,14 @@ COPY . .
 # Construire l'application
 RUN npm run build
 
-# Exposer le port 3000
-EXPOSE 3000
+# Utiliser une image de base Nginx pour servir l'application
+FROM nginx:alpine
 
-# Démarrer l'application
-CMD ["npm", "start"]
+# Copier les fichiers de build dans le répertoire Nginx
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Exposer le port 80
+EXPOSE 80
+
+# Démarrer Nginx
+CMD ["nginx", "-g", "daemon off;"]
